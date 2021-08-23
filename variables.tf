@@ -1,9 +1,9 @@
 variable "name" {
-  description = "The name of the ECS cluster"
+  description = "Name of the ECS cluster"
   type        = string
 
   validation {
-    conditiion    = var.name != ""
+    condition     = var.name != ""
     error_message = "The name MUST be not empty."
   }
 
@@ -32,7 +32,7 @@ variable "container_insights" {
 }
 
 variable "tags" {
-  description = "The tags for ECS Cluster"
+  description = "A map of tags to add to ECS Cluster resource"
   type        = map(string)
   default     = {}
 }
