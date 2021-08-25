@@ -50,4 +50,5 @@ First release
 
 
 
-[Unreleased]: https://github.com/rabiloo/terraform-aws-ecs/compare/v0.1.0...master
+[Unreleased]: https://github.com/rabiloo/terraform-aws-ecs/compare/v0.1.1...master
+[0.1.1]:      https://github.com/rabiloo/terraform-aws-ecs/compare/v0.1.0...v0.1.1
