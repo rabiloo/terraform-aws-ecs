@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased] - YYYY-MM-DD
 
 ### Added
-- Add Lint action for push and pull request to master branch
+- Nothing
 
 ### Changed
 - Nothing
@@ -22,10 +22,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Nothing
 
 ### Fixed
-- Fix bug validation of `name` variable
+- Nothing
 
 ### Security
 - Nothing
+
+
+
+
+## [0.1.1] - 2021-08-25
+
+### Added
+- Add Lint action for push and pull request to master branch
+- Add Makefile
+- Add documents for inputs and outputs
+
+### Fixed
+- Fix bug validation of `name` variable
 
 
 

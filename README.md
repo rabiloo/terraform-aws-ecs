@@ -2,18 +2,12 @@
 
 Terraform module which creates ECS cluster resources on AWS.
 
-## TODO
-
-- [ ] Update README.md
-- [ ] Add examples
-- [ ] Add Github Wrokflows
-
 ## Usage
 
 ```hcl
 module "php" {
   source  = "rabiloo/ecs/aws"
-  version = "~> 0.1.0"
+  version = "~> 0.1.1"
 
   name = "app-ecs-cluster"
   capacity_providers = ["FARGATE", "FARGATE_SPOT"]
@@ -27,6 +21,7 @@ module "php" {
 }
 ```
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -67,31 +62,15 @@ No modules.
 | <a name="output_ecs_cluster_arn"></a> [ecs\_cluster\_arn](#output\_ecs\_cluster\_arn) | The ARN of the ECS Cluster |
 | <a name="output_ecs_cluster_id"></a> [ecs\_cluster\_id](#output\_ecs\_cluster\_id) | The ID of the ECS Cluster |
 | <a name="output_ecs_cluster_name"></a> [ecs\_cluster\_name](#output\_ecs\_cluster\_name) | The name of the ECS cluster |
+<!-- END_TF_DOCS -->
 
 ## Development
 
-Format:
+1. Install `terrform`, `tflint`, `terraform-docs` and `make`
+2. Using make
 
-```shell
-terraform fmt
 ```
-
-Format check:
-
-```shell
-terraform fmt -check
-```
-
-Lint check:
-
-```shell
-tflint
-```
-
-Document generate for input/output
-
-```shell
-terraform-docs markdown --sort-by required .
+make help
 ```
 
 ## Contributing
