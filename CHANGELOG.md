@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
-## [Unreleased] - YYYY-MM-DD
+## [Unreleased](https://github.com/rabiloo/terraform-aws-ecs/compare/v0.1.1...master) - YYYY-MM-DD
 
 ### Added
 - Nothing
@@ -28,9 +28,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Nothing
 
 
+<!-- Content should be placed here -->
 
 
-## [0.1.1] - 2021-08-25
+
+## [Version 0.1.1](https://github.com/rabiloo/terraform-aws-ecs/compare/v0.1.0...v0.1.1) - 2021-08-25
 
 ### Added
 - Add Lint action for push and pull request to master branch
@@ -43,12 +45,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
-## 0.1.0 - 2021-08-10
+## Version 0.1.0 - 2021-08-10
 
 First release
-
-
-
-
-[Unreleased]: https://github.com/rabiloo/terraform-aws-ecs/compare/v0.1.1...master
-[0.1.1]:      https://github.com/rabiloo/terraform-aws-ecs/compare/v0.1.0...v0.1.1
