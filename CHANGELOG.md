@@ -32,13 +32,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Nothing
 
 <!-- New Release notes will be placed here automatically -->
-## [Version 0.2.0](https://github.com/rabiloo/terraform-aws-ecs/compare/v0.1.1...v0.2.0) - 2023-01-30
+## [v0.2.0](https://github.com/rabiloo/terraform-aws-ecs/compare/v0.1.1...v0.2.0) - 2023-01-30
 
 ### Changed
 
 - Required AWS provider version `~>4.52`
 
-## [Version 0.1.1](https://github.com/rabiloo/terraform-aws-ecs/compare/v0.1.0...v0.1.1) - 2021-08-25
+## [v0.1.1](https://github.com/rabiloo/terraform-aws-ecs/compare/v0.1.0...v0.1.1) - 2021-08-25
 
 ### Added
 
@@ -50,6 +50,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix bug validation of `name` variable
 
-## Version 0.1.0 - 2021-08-10
+## v0.1.0 - 2021-08-10
 
-First release
+### Added
+
+- Initial Release
