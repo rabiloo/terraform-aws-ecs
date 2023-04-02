@@ -60,6 +60,7 @@ validate: ## Validate Terraform files
 .PHONY: docs
 docs: ## Generate README.md
 	terraform-docs markdown . \
+		--recursive \
 		--sort-by required \
 		--output-file README.md \
 		--output-mode insert

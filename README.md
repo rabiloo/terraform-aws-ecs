@@ -7,7 +7,7 @@ Terraform module which creates ECS cluster resources on AWS.
 ```hcl
 module "php" {
   source  = "rabiloo/ecs/aws"
-  version = "~> 0.2.0"
+  version = "~> 0.2.1"
 
   name = "app-ecs-cluster"
   capacity_providers = ["FARGATE", "FARGATE_SPOT"]
@@ -26,14 +26,14 @@ module "php" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.2 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.52 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.2 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.52.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >=4.0 |
 
 ## Modules
 
@@ -85,5 +85,5 @@ If you would like to help take a look at the [list of issues](https://github.com
 ## License
 
 This project is released under the MIT License.   
-Copyright © 2021 [Rabiloo Co., Ltd](https://rabiloo.com)   
+Copyright © 2023 [Rabiloo Co., Ltd](https://rabiloo.com)   
 Please see [License File](LICENSE) for more information.
