@@ -70,6 +70,7 @@ module "task_role" {
 | <a name="input_name"></a> [name](#input\_name) | The name of the IAM role | `string` | n/a | yes |
 | <a name="input_description"></a> [description](#input\_description) | The description of the IAM role | `string` | `"This is a customized role"` | no |
 | <a name="input_path"></a> [path](#input\_path) | The path to the IAM role | `string` | `"/"` | no |
+| <a name="input_permissions_boundary_arn"></a> [permissions\_boundary\_arn](#input\_permissions\_boundary\_arn) | The permissions boundary of the IAM role | `string` | `""` | no |
 | <a name="input_readable_s3_arns"></a> [readable\_s3\_arns](#input\_readable\_s3\_arns) | The list of S3 ARN that can be read from | `list(string)` | <pre>[<br>  "arn:aws:s3:::*"<br>]</pre> | no |
 | <a name="input_sendable_ses_arns"></a> [sendable\_ses\_arns](#input\_sendable\_ses\_arns) | The list of SES domain identity ARN that can be sent from | `list(string)` | <pre>[<br>  "arn:aws:ses:*:*:*"<br>]</pre> | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | The list of tags to apply to the IAM role | `map(string)` | `{}` | no |

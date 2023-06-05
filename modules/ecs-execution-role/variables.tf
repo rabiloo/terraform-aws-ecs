@@ -47,3 +47,9 @@ variable "readable_secrets_arn" {
   type        = list(string)
   default     = []
 }
+
+variable "permissions_boundary_arn" {
+  description = "The permissions boundary of the IAM role"
+  type        = string
+  default     = ""
+}

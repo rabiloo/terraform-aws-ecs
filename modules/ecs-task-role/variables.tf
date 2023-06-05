@@ -36,6 +36,12 @@ variable "description" {
   default     = "This is a customized role"
 }
 
+variable "permissions_boundary_arn" {
+  description = "The permissions boundary of the IAM role"
+  type        = string
+  default     = ""
+}
+
 variable "writable_s3_arns" {
   description = "The list of S3 ARN that can be written to"
   type        = list(string)

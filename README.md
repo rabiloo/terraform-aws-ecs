@@ -7,7 +7,7 @@ Terraform module which creates ECS cluster resources on AWS.
 ```hcl
 module "php" {
   source  = "rabiloo/ecs/aws"
-  version = "~> 0.2.1"
+  version = "~> 0.2.2"
 
   name = "app-ecs-cluster"
   capacity_providers = ["FARGATE", "FARGATE_SPOT"]

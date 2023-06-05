@@ -121,8 +121,9 @@ module "this" {
   role_description = var.description
   tags             = var.tags
 
-  create_role       = true
-  role_requires_mfa = false
+  create_role                   = true
+  role_requires_mfa             = false
+  role_permissions_boundary_arn = var.permissions_boundary_arn
 
   trusted_role_actions = [
     "sts:AssumeRole",

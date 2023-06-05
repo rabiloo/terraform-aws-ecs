@@ -62,6 +62,7 @@ module "task_execution_role" {
 | <a name="input_name"></a> [name](#input\_name) | The name of the IAM role | `string` | n/a | yes |
 | <a name="input_description"></a> [description](#input\_description) | The description of the IAM role | `string` | `"This is a customized role"` | no |
 | <a name="input_path"></a> [path](#input\_path) | The path to the IAM role | `string` | `"/"` | no |
+| <a name="input_permissions_boundary_arn"></a> [permissions\_boundary\_arn](#input\_permissions\_boundary\_arn) | The permissions boundary of the IAM role | `string` | `""` | no |
 | <a name="input_readable_kms_keys_arn"></a> [readable\_kms\_keys\_arn](#input\_readable\_kms\_keys\_arn) | The list KMS key\_id | `list(string)` | `[]` | no |
 | <a name="input_readable_secrets_arn"></a> [readable\_secrets\_arn](#input\_readable\_secrets\_arn) | The list secret ARN | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | The list of tags to apply to the IAM role | `map(string)` | `{}` | no |
