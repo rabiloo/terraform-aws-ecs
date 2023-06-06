@@ -7,7 +7,7 @@ This submodule help create an IAM assumable role for ECS Task Execution Role
 ```hcl
 module "task_execution_role" {
   source  = "rabiloo/ecs/aws//modules/ecs-execution-role"
-  version = ">=0.2.1"
+  version = "~>0.2.3"
 
   name = "custom-ecs-execution-role"
   path = "/service-roles/"
@@ -45,8 +45,8 @@ module "task_execution_role" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_policy"></a> [policy](#module\_policy) | terraform-aws-modules/iam/aws//modules/iam-policy | ~>5.14.0 |
-| <a name="module_this"></a> [this](#module\_this) | terraform-aws-modules/iam/aws//modules/iam-assumable-role | ~>5.14.0 |
+| <a name="module_policy"></a> [policy](#module\_policy) | terraform-aws-modules/iam/aws//modules/iam-policy | ~>5.16.0 |
+| <a name="module_this"></a> [this](#module\_this) | terraform-aws-modules/iam/aws//modules/iam-assumable-role | ~>5.16.0 |
 
 ## Resources
 
