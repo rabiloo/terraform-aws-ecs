@@ -57,7 +57,7 @@ data "aws_iam_policy_document" "policy" {
 
 module "policy" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-policy"
-  version = "~>5.16.0"
+  version = "~>5.21.0"
 
   name   = "${var.name}-policies"
   policy = data.aws_iam_policy_document.policy.json
@@ -66,7 +66,7 @@ module "policy" {
 
 module "this" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "~>5.16.0"
+  version = "~>5.21.0"
 
   role_name        = var.name
   role_path        = var.path
