@@ -1,46 +1,38 @@
-name: Run linting
+name: Run TFLint check
 
 on:
   - push
 
 jobs:
-  lint:
+  tflint-check:
+    name: Run TFLint check
     runs-on: ubuntu-latest
-    name: Run linting
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
 
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v4
 
       - name: Cache plugin dir
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.tflint.d/plugins
           key: tflint-${{ hashFiles('.tflint.hcl') }}
 
+      - name: Show version
+        run: |
+          tflint --version
+
       - name: Run init
         run: |
           tflint --init
-          terraform init -upgrade
 
-      - name: Show version
+      - name: Run check
         run: |
-          terraform --version
-          tflint --version
-
-      - name: Run linting
-        run: |
-          terraform fmt --recursive
-          tflint -f compact --module
+          tflint --recursive --format=compact --no-color
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Run linting
+          commit_message: Run TFLint check

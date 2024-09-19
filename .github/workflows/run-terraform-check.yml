@@ -1,0 +1,23 @@
+name: Run Terraform check
+
+on:
+  - push
+
+jobs:
+  terraform-check:
+    name: Run Terraform check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Show version
+        run: |
+          terraform -version
+
+      - name: Run check format
+        run: |
+          terraform fmt -recursive -check -no-color

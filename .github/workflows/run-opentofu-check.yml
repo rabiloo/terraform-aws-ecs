@@ -1,0 +1,22 @@
+name: Run OpenTofu check
+
+on:
+  - push
+
+jobs:
+  opentofu-check:
+    name: Run OpenTofu check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
+
+      - name: Show version
+        run: tofu -version
+
+      - name: Run check format
+        run: |
+          tofu fmt -check -recursive -no-color

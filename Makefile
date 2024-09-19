@@ -40,22 +40,20 @@ help: ## This help
 	@echo ""
 
 .PHONY: build
-build: install lint validate docs ## Build module
+build: tofu terraform tflint docs ## Build module
 
-.PHONY: install
-install: ## Setup development environment
+.PHONY: tflint
+tflint: ## Run TFLint check
 	tflint --init
-	terraform init -upgrade
+	tflint --format compact --recursive
 
-.PHONY: lint
-lint: ## Lint Terraform files
-	terraform fmt --recursive
-	tflint --format compact --module
+.PHONY: tofu
+tofu: ## Run OpenTofu files
+	tofu fmt -recursive -check
 
-.PHONY: validate
-validate: ## Validate Terraform files
-	terraform fmt --check
-	terraform validate
+.PHONY: terraform
+terraform: ## Run Terraform check
+	terraform fmt -recursive -check
 
 .PHONY: docs
 docs: ## Generate README.md
