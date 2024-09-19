@@ -10,8 +10,8 @@
 # - sends application logs to CloudWatch Logs
 
 locals {
-  s3_arns                           = compact(distinct(concat(var.writable_s3_arns, var.readable_s3_arns)))
-  aws_ssm_managed_instance_core_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  s3_arns                       = compact(distinct(concat(var.writable_s3_arns, var.readable_s3_arns)))
+  ssm_managed_instance_core_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
 data "aws_iam_policy_document" "policy" {
@@ -117,7 +117,7 @@ module "this" {
   ]
 
   custom_role_policy_arns = compact([
-    var.enable_ssm_core_policy ? locals.ssm_managed_instance_core_arn : "",
+    var.enable_ssm_core_policy ? local.ssm_managed_instance_core_arn : "",
     module.policy.arn,
   ])
 

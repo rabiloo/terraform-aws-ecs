@@ -3,14 +3,7 @@
 # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html
 ################################################################################
 
-data "aws_region" "current" {}
-data "aws_partition" "current" {}
-data "aws_caller_identity" "current" {}
-
 locals {
-  account_id  = data.aws_caller_identity.current.account_id
-  partition   = data.aws_partition.current.partition
-  region      = data.aws_region.current.name
   name_prefix = "${trimsuffix(var.name)}-"
 
   create_custom_policy = var.create && length(var.statements) > 0
