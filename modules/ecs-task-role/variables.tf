@@ -42,6 +42,18 @@ variable "permissions_boundary_arn" {
   default     = ""
 }
 
+variable "custom_policy_document_json" {
+  description = "The custom document json for createing an IAM policy"
+  type        = string
+  default     = ""
+}
+
+variable "enable_ssm_core_policy" {
+  description = "Enable to attach AmazonSSMManagedInstanceCore to task role"
+  type        = bool
+  default     = true
+}
+
 variable "writable_s3_arns" {
   description = "The list of S3 ARN that can be written to"
   type        = list(string)

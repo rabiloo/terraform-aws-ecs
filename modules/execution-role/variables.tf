@@ -56,12 +56,12 @@ variable "permissions_boundary_arn" {
 
 variable "policy_arns" {
   description = "The list of IAM policy ARN be attached to IAM role"
-  type        = list(string)
-  default     = []
+  type        = map(string)
+  default     = {}
 }
 
 variable "statements" {
   description = "A map of IAM policy [statements](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document#statement) for custom permission usage"
-  type        = list(object)
-  default     = []
+  type        = any
+  default     = {}
 }

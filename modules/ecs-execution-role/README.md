@@ -2,6 +2,8 @@
 
 This submodule help create an IAM assumable role for ECS Task Execution Role
 
+**Deprecated** This submodule is deprecated from version 0.3.0 . Please use `execution-role` submodule.
+
 ## Usage
 
 ```hcl
@@ -45,14 +47,13 @@ module "task_execution_role" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_policy"></a> [policy](#module\_policy) | terraform-aws-modules/iam/aws//modules/iam-policy | ~>5.16.0 |
-| <a name="module_this"></a> [this](#module\_this) | terraform-aws-modules/iam/aws//modules/iam-assumable-role | ~>5.16.0 |
+| <a name="module_policy"></a> [policy](#module\_policy) | terraform-aws-modules/iam/aws//modules/iam-policy | ~>5.30.0 |
+| <a name="module_this"></a> [this](#module\_this) | terraform-aws-modules/iam/aws//modules/iam-assumable-role | ~>5.30.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_iam_policy.AmazonECSTaskExecutionRolePolicy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy) | data source |
 | [aws_iam_policy_document.policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
@@ -88,5 +89,5 @@ If you would like to help take a look at the [list of issues](https://github.com
 ## License
 
 This project is released under the MIT License.
-Copyright © 2023 [Rabiloo Co., Ltd](https://rabiloo.com)
+Copyright © 2024 [Rabiloo Co., Ltd](https://rabiloo.com)
 Please see [License File](https://github.com/rabiloo/terraform-aws-ecs/blob/master/LICENSE) for more information.

@@ -2,6 +2,8 @@
 
 Terraform module which creates ECS cluster resources on AWS.
 
+**Deprecated** This module is deprecated from version 0.3.0 . Please use [terraform-aws-modules/ecs/aws](https://github.com/terraform-aws-modules/terraform-aws-ecs) module. From version 0.3.0 this module only includes some submodules.
+
 ## Usage
 
 ```hcl
@@ -33,7 +35,7 @@ module "php" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.1.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.24.0 |
 
 ## Modules
 
@@ -86,5 +88,5 @@ If you would like to help take a look at the [list of issues](https://github.com
 ## License
 
 This project is released under the MIT License.   
-Copyright © 2023 [Rabiloo Co., Ltd](https://rabiloo.com)   
+Copyright © 2024 [Rabiloo Co., Ltd](https://rabiloo.com)   
 Please see [License File](LICENSE) for more information.

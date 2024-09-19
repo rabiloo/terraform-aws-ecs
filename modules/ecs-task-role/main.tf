@@ -10,27 +10,11 @@
 # - sends application logs to CloudWatch Logs
 
 locals {
-  s3_arns = compact(distinct(concat(var.writable_s3_arns, var.readable_s3_arns)))
-}
-
-data "aws_caller_identity" "current" {}
-data "aws_iam_policy" "AmazonSSMManagedInstanceCore" {
-  name = "AmazonSSMManagedInstanceCore"
+  s3_arns                           = compact(distinct(concat(var.writable_s3_arns, var.readable_s3_arns)))
+  aws_ssm_managed_instance_core_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
 data "aws_iam_policy_document" "policy" {
-  statement {
-    sid    = "AllowEcsExec"
-    effect = "Allow"
-    actions = [
-      "ssmmessages:CreateControlChannel",
-      "ssmmessages:CreateDataChannel",
-      "ssmmessages:OpenControlChannel",
-      "ssmmessages:OpenDataChannel",
-    ]
-    resources = ["*"]
-  }
-
   dynamic "statement" {
     for_each = length(local.s3_arns) > 0 ? [true] : []
 
@@ -108,7 +92,7 @@ module "policy" {
   version = "~>5.30.0"
 
   name   = "${var.name}-policies"
-  policy = data.aws_iam_policy_document.policy.json
+  policy = coalesce(var.custom_policy_document_json, data.aws_iam_policy_document.policy.json)
   tags   = var.tags
 }
 
@@ -132,10 +116,10 @@ module "this" {
     "ecs-tasks.amazonaws.com",
   ]
 
-  custom_role_policy_arns = [
-    data.aws_iam_policy.AmazonSSMManagedInstanceCore.arn,
+  custom_role_policy_arns = compact([
+    var.enable_ssm_core_policy ? locals.ssm_managed_instance_core_arn : "",
     module.policy.arn,
-  ]
+  ])
 
   depends_on = [
     module.policy,

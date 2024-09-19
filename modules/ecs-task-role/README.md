@@ -2,6 +2,8 @@
 
 This submodule help create an IAM assumable role for ECS Task
 
+**Deprecated** This submodule is deprecated from version 0.3.0 . Please use `task-role` submodule.
+
 ## Usage
 
 ```hcl
@@ -52,15 +54,13 @@ module "task_role" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_policy"></a> [policy](#module\_policy) | terraform-aws-modules/iam/aws//modules/iam-policy | ~>5.16.0 |
-| <a name="module_this"></a> [this](#module\_this) | terraform-aws-modules/iam/aws//modules/iam-assumable-role | ~>5.16.0 |
+| <a name="module_policy"></a> [policy](#module\_policy) | terraform-aws-modules/iam/aws//modules/iam-policy | ~>5.30.0 |
+| <a name="module_this"></a> [this](#module\_this) | terraform-aws-modules/iam/aws//modules/iam-assumable-role | ~>5.30.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
-| [aws_iam_policy.AmazonSSMManagedInstanceCore](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy) | data source |
 | [aws_iam_policy_document.policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
@@ -68,7 +68,9 @@ module "task_role" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_name"></a> [name](#input\_name) | The name of the IAM role | `string` | n/a | yes |
+| <a name="input_custom_policy_document_json"></a> [custom\_policy\_document\_json](#input\_custom\_policy\_document\_json) | The custom document json for createing an IAM policy | `string` | `""` | no |
 | <a name="input_description"></a> [description](#input\_description) | The description of the IAM role | `string` | `"This is a customized role"` | no |
+| <a name="input_enable_ssm_core_policy"></a> [enable\_ssm\_core\_policy](#input\_enable\_ssm\_core\_policy) | Enable to attach AmazonSSMManagedInstanceCore to task role | `bool` | `true` | no |
 | <a name="input_path"></a> [path](#input\_path) | The path to the IAM role | `string` | `"/"` | no |
 | <a name="input_permissions_boundary_arn"></a> [permissions\_boundary\_arn](#input\_permissions\_boundary\_arn) | The permissions boundary of the IAM role | `string` | `""` | no |
 | <a name="input_readable_s3_arns"></a> [readable\_s3\_arns](#input\_readable\_s3\_arns) | The list of S3 ARN that can be read from | `list(string)` | <pre>[<br>  "arn:aws:s3:::*"<br>]</pre> | no |
@@ -98,5 +100,5 @@ If you would like to help take a look at the [list of issues](https://github.com
 ## License
 
 This project is released under the MIT License.
-Copyright © 2023 [Rabiloo Co., Ltd](https://rabiloo.com)
+Copyright © 2024 [Rabiloo Co., Ltd](https://rabiloo.com)
 Please see [License File](https://github.com/rabiloo/terraform-aws-ecs/blob/master/LICENSE) for more information.
