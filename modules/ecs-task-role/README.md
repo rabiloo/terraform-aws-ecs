@@ -73,11 +73,11 @@ module "task_role" {
 | <a name="input_enable_ssm_core_policy"></a> [enable\_ssm\_core\_policy](#input\_enable\_ssm\_core\_policy) | Enable to attach AmazonSSMManagedInstanceCore to task role | `bool` | `true` | no |
 | <a name="input_path"></a> [path](#input\_path) | The path to the IAM role | `string` | `"/"` | no |
 | <a name="input_permissions_boundary_arn"></a> [permissions\_boundary\_arn](#input\_permissions\_boundary\_arn) | The permissions boundary of the IAM role | `string` | `""` | no |
-| <a name="input_readable_s3_arns"></a> [readable\_s3\_arns](#input\_readable\_s3\_arns) | The list of S3 ARN that can be read from | `list(string)` | <pre>[<br>  "arn:aws:s3:::*"<br>]</pre> | no |
-| <a name="input_sendable_ses_arns"></a> [sendable\_ses\_arns](#input\_sendable\_ses\_arns) | The list of SES domain identity ARN that can be sent from | `list(string)` | <pre>[<br>  "arn:aws:ses:*:*:*"<br>]</pre> | no |
+| <a name="input_readable_s3_arns"></a> [readable\_s3\_arns](#input\_readable\_s3\_arns) | The list of S3 ARN that can be read from | `list(string)` | <pre>[<br/>  "arn:aws:s3:::*"<br/>]</pre> | no |
+| <a name="input_sendable_ses_arns"></a> [sendable\_ses\_arns](#input\_sendable\_ses\_arns) | The list of SES domain identity ARN that can be sent from | `list(string)` | <pre>[<br/>  "arn:aws:ses:*:*:*"<br/>]</pre> | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | The list of tags to apply to the IAM role | `map(string)` | `{}` | no |
-| <a name="input_writable_log_group_arns"></a> [writable\_log\_group\_arns](#input\_writable\_log\_group\_arns) | The list of Log group ARN that can be written to | `list(string)` | <pre>[<br>  "arn:aws:logs:::*"<br>]</pre> | no |
-| <a name="input_writable_s3_arns"></a> [writable\_s3\_arns](#input\_writable\_s3\_arns) | The list of S3 ARN that can be written to | `list(string)` | <pre>[<br>  "arn:aws:s3:::*"<br>]</pre> | no |
+| <a name="input_writable_log_group_arns"></a> [writable\_log\_group\_arns](#input\_writable\_log\_group\_arns) | The list of Log group ARN that can be written to | `list(string)` | <pre>[<br/>  "arn:aws:logs:::*"<br/>]</pre> | no |
+| <a name="input_writable_s3_arns"></a> [writable\_s3\_arns](#input\_writable\_s3\_arns) | The list of S3 ARN that can be written to | `list(string)` | <pre>[<br/>  "arn:aws:s3:::*"<br/>]</pre> | no |
 
 ## Outputs
 

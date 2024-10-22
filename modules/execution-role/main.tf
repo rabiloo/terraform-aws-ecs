@@ -6,7 +6,7 @@
 locals {
   name_prefix = "${trimsuffix(var.name)}-"
 
-  create_custom_policy = var.create && length(var.statements) > 0
+  create_custom_policy = var.create && (length(var.statements) > 0 || var.enable_read_ssm_params || var.enable_read_secrets || var.enable_write_log_streams || var.enable_pull_ecr_images)
 }
 
 data "aws_iam_policy_document" "assume_role" {
@@ -47,6 +47,65 @@ resource "aws_iam_role_policy_attachment" "this" {
 
 data "aws_iam_policy_document" "custom" {
   count = local.create_custom_policy ? 1 : 0
+
+  dynamic "statement" {
+    for_each = var.enable_write_log_streams ? [1] : []
+
+    content {
+      sid = "WriteLogs"
+      actions = [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+      ]
+      resources = var.writable_log_streams
+    }
+  }
+
+  dynamic "statement" {
+    for_each = var.enable_pull_ecr_images ? [1] : []
+
+    content {
+      sid = "GetECRToken"
+      actions = [
+        "ecr:GetAuthorizationToken",
+      ]
+      resources = ["*"]
+    }
+  }
+
+  dynamic "statement" {
+    for_each = var.enable_pull_ecr_images ? [1] : []
+
+    content {
+      sid = "PullECRImages"
+      actions = [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage",
+      ]
+      resources = var.pullable_ecr_images
+    }
+  }
+
+  dynamic "statement" {
+    for_each = var.enable_read_ssm_params ? [1] : []
+
+    content {
+      sid       = "GetSSMParams"
+      actions   = ["ssm:GetParameters"]
+      resources = var.readable_ssm_params
+    }
+  }
+
+  dynamic "statement" {
+    for_each = var.enable_read_secrets ? [1] : []
+
+    content {
+      sid       = "GetSecrets"
+      actions   = ["secretsmanager:GetSecretValue"]
+      resources = var.readable_secrets
+    }
+  }
 
   dynamic "statement" {
     for_each = var.statements
@@ -90,11 +149,19 @@ data "aws_iam_policy_document" "custom" {
   }
 }
 
-resource "aws_iam_role_policy" "custom" {
+resource "aws_iam_policy" "custom" {
   count = local.create_custom_policy ? 1 : 0
 
   name        = var.use_name_prefix ? null : var.name
   name_prefix = var.use_name_prefix ? local.name_prefix : null
   policy      = data.aws_iam_policy_document.custom[0].json
-  role        = aws_iam_role.this[0].id
+  description = "Task execution role IAM policy"
+  tags        = var.tags
+}
+
+resource "aws_iam_role_policy_attachment" "custom" {
+  count = local.create_custom_policy ? 1 : 0
+
+  role       = aws_iam_role.this[0].id
+  policy_arn = aws_iam_policy.custom[0].arn
 }

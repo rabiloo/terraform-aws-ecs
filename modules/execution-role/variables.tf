@@ -65,3 +65,51 @@ variable "statements" {
   type        = any
   default     = {}
 }
+
+variable "enable_read_ssm_params" {
+  description = "Controls if the task execution role will be permitted to get/read SSM parameters"
+  type        = bool
+  default     = false
+}
+
+variable "readable_ssm_params" {
+  description = "List of SSM parameter ARNs the task execution role will be permitted to get/read"
+  type        = list(string)
+  default     = ["arn:aws:ssm:*:*:parameter/*"]
+}
+
+variable "enable_read_secrets" {
+  description = "Controls if the task execution role will be permitted to get/read SecretsManager secrets"
+  type        = bool
+  default     = false
+}
+
+variable "readable_secrets" {
+  description = "List of SecretsManager secret ARNs the task execution role will be permitted to get/read"
+  type        = list(string)
+  default     = ["arn:aws:secretsmanager:*:*:secret:*"]
+}
+
+variable "enable_write_log_streams" {
+  description = "Controls if the task execution role will be permitted to put/write CloudWatch log streams"
+  type        = bool
+  default     = false
+}
+
+variable "writable_log_streams" {
+  description = "List of CloudWatch log streams the task execution role will be permitted to put/write"
+  type        = list(string)
+  default     = ["*"]
+}
+
+variable "enable_pull_ecr_images" {
+  description = "Controls if the task execution role will be permitted to pull ECR private repositories"
+  type        = bool
+  default     = false
+}
+
+variable "pullable_ecr_images" {
+  description = "List of ECR private repositories the task execution role will be permitted to pull"
+  type        = list(string)
+  default     = ["*"]
+}

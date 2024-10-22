@@ -13,7 +13,7 @@ locals {
   region      = data.aws_region.current.name
   name_prefix = "${trimsuffix(var.name)}-"
 
-  create_custom_policy = var.create && length(var.statements) > 0
+  create_custom_policy = var.create && (length(var.statements) > 0 || var.enable_execute_command)
 }
 
 data "aws_iam_policy_document" "assume_role" {
@@ -66,7 +66,22 @@ resource "aws_iam_role_policy_attachment" "this" {
 }
 
 data "aws_iam_policy_document" "custom" {
-  count = var.create && length(var.statements) > 0 ? 1 : 0
+  count = local.create_custom_policy ? 1 : 0
+
+  dynamic "statement" {
+    for_each = var.enable_execute_command ? [1] : []
+
+    content {
+      sid = "ECSExec"
+      actions = [
+        "ssmmessages:CreateControlChannel",
+        "ssmmessages:CreateDataChannel",
+        "ssmmessages:OpenControlChannel",
+        "ssmmessages:OpenDataChannel",
+      ]
+      resources = ["*"]
+    }
+  }
 
   dynamic "statement" {
     for_each = var.statements
@@ -110,11 +125,19 @@ data "aws_iam_policy_document" "custom" {
   }
 }
 
-resource "aws_iam_role_policy" "custom" {
+resource "aws_iam_policy" "custom" {
   count = local.create_custom_policy ? 1 : 0
 
   name        = var.use_name_prefix ? null : var.name
   name_prefix = var.use_name_prefix ? local.name_prefix : null
   policy      = data.aws_iam_policy_document.custom[0].json
-  role        = aws_iam_role.this[0].id
+  description = "Task role IAM policy"
+  tags        = var.tags
+}
+
+resource "aws_iam_role_policy_attachment" "custom" {
+  count = local.create_custom_policy ? 1 : 0
+
+  role       = aws_iam_role.this[0].id
+  policy_arn = aws_iam_policy.custom[0].arn
 }
